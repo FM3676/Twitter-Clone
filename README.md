@@ -2,6 +2,10 @@
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
+## Overview
+
+A Twitter Clone App Built in Nuxt3,Tailwind CSS,Prisma
+
 ## Setup
 
 Make sure to install the dependencies:
@@ -56,7 +60,9 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss"],
 });
 ```
+
 Then init the `tailwind CSS`
+
 ```bash
 npx tailwindcss init
 ```
