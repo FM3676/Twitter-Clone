@@ -12,8 +12,8 @@
             </div>
           </aside>
           <!-- Main Content -->
-          <main class="col-span-12 bg-red-500 md:col-span-8 xl:col-span-6">
-            <h1>asd</h1>
+          <main class="col-span-12 md:col-span-8 xl:col-span-6">
+            <RouterView />
           </main>
           <!-- Right Sidebar -->
           <aside class="hidden md:block xl:col-span-4 md:col-span-3">
