@@ -66,3 +66,12 @@ Then init the `tailwind CSS`
 ```bash
 npx tailwindcss init
 ```
+
+## Prisma Config
+
+To connect to your own MongoDB Database, save the URL in the .env
+
+```bash
+DATABASE_URL="mongodb+srv://USERNAME:<PASSWORD>@URL/DATABASE?"
+
+```
