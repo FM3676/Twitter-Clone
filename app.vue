@@ -33,7 +33,9 @@
 
 <script setup lang="ts">
 const darkMode = ref<boolean>(false);
-const { useAuthUser } = useAuth();
+const { useAuthUser, initAuth } = useAuth();
 const user = useAuthUser();
+
+onBeforeMount(() => initAuth());
 </script>
 <style scoped></style>

@@ -30,5 +30,27 @@ export default () => {
       }
     });
 
-  return { login, useAuthUser };
+  const refreshToken = () =>
+    new Promise(async (res, rej) => {
+      try {
+        const data = await $fetch("/api/auth/refresh");
+
+        setToken(data.access_token);
+        res(true);
+      } catch (error) {
+        rej(error);
+      }
+    });
+
+  const initAuth = () =>
+    new Promise(async (res, rej) => {
+      try {
+        await refreshToken();
+
+        res(true);
+      } catch (error) {
+        rej(error);
+      }
+    });
+  return { login, useAuthUser, initAuth };
 };
