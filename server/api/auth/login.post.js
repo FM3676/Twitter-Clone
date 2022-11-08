@@ -15,9 +15,6 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-
-
-
   // If user is registered
   const user = await getUserByUsername(username);
 
