@@ -1,6 +1,7 @@
 /* Provide the method that get token and user info */
 
 import useFetchApi from "./useFetchApi";
+import jwt_deocde from "jwt-decode";
 
 export default () => {
   /* useState: Provided by Nuxt */
@@ -63,6 +64,22 @@ export default () => {
         rej(error);
       }
     });
+
+  const reRefreshAccessToken = () => {
+    const authToken = useAuthToken();
+
+    if (!authToken.value) return;
+
+    const jwt = jwt_deocde(authToken.value);
+
+    const newRefreshTime = jwt.exp - 60000;
+
+    setTimeout(async () => {
+      // Using await to make sure we get a new token.
+      await refreshToken();
+      reRefreshAccessToken();
+    }, newRefreshTime);
+  };
 
   const initAuth = () =>
     new Promise(async (res, rej) => {
