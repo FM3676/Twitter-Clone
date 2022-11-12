@@ -1,8 +1,10 @@
 <template>
   <div :class="{ dark: darkMode }">
     <div class="bg-white dark:bg-dim-900">
+      <!-- Loading Page -->
+      <LoadingPage v-if="isAuthLoading" />
       <!-- App -->
-      <div v-if="!!user" class="min-h-full">
+      <div v-else-if="!!user" class="min-h-full">
         <div
           class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-10"
         >
@@ -33,8 +35,9 @@
 
 <script setup lang="ts">
 const darkMode = ref<boolean>(false);
-const { useAuthUser, initAuth } = useAuth();
+const { useAuthUser, useAuthLoading, initAuth } = useAuth();
 const user = useAuthUser();
+const isAuthLoading = useAuthLoading();
 
 onBeforeMount(() => initAuth());
 </script>

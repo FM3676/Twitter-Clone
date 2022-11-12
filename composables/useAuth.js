@@ -6,6 +6,7 @@ export default () => {
   /* useState: Provided by Nuxt */
   const useAuthToken = () => useState("auth_token");
   const useAuthUser = () => useState("auth_user");
+  const useAuthLoading = () => useState("auth_loading", () => true);
 
   const setToken = (newToken) => {
     const authToken = useAuthToken();
@@ -15,6 +16,11 @@ export default () => {
   const setUser = (newUser) => {
     const authUser = useAuthUser();
     authUser.value = newUser;
+  };
+
+  const setIsAuthLoading = (value) => {
+    const authLoading = useAuthLoading();
+    authLoading.value = value;
   };
 
   const login = ({ username, password }) =>
@@ -60,6 +66,7 @@ export default () => {
 
   const initAuth = () =>
     new Promise(async (res, rej) => {
+      setIsAuthLoading(true);
       try {
         await refreshToken();
         await getUser();
@@ -67,7 +74,9 @@ export default () => {
         res(true);
       } catch (error) {
         rej(error);
+      } finally {
+        setIsAuthLoading(false);
       }
     });
-  return { login, useAuthUser, useAuthToken, initAuth };
+  return { login, useAuthUser, useAuthToken, useAuthLoading, initAuth };
 };
