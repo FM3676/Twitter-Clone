@@ -1,3 +1,7 @@
+/* Provide the method that get token and user info */
+
+import useFetchApi from "./useFetchApi";
+
 export default () => {
   /* useState: Provided by Nuxt */
   const useAuthToken = () => useState("auth_token");
@@ -42,15 +46,28 @@ export default () => {
       }
     });
 
+  const getUser = () =>
+    new Promise(async (res, rej) => {
+      try {
+        const data = await useFetchApi("/api/auth/user");
+
+        setUser(data.user);
+        res(true);
+      } catch (error) {
+        rej(error);
+      }
+    });
+
   const initAuth = () =>
     new Promise(async (res, rej) => {
       try {
         await refreshToken();
+        await getUser();
 
         res(true);
       } catch (error) {
         rej(error);
       }
     });
-  return { login, useAuthUser, initAuth };
+  return { login, useAuthUser, useAuthToken, initAuth };
 };
