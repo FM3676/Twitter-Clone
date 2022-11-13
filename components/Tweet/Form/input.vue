@@ -14,12 +14,20 @@
         <textarea
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
+          placeholder="What's happening?"
         ></textarea>
       </div>
     </div>
 
     <!-- File Selector -->
     <div class="p-4 pl-16">
+      <img
+        :src="inputImageUrl"
+        alt=""
+        class="rounded-2xl border"
+        :class="twitterBorderColor"
+      />
+
       <input
         type="file"
         hidden
@@ -57,12 +65,17 @@ interface User {
   name: string;
   profileImage: string;
 }
+const { twitterBorderColor } = useTailwindConfig();
+/* Props & Emits */
 const props = defineProps<{ user: User }>();
 const emits = defineEmits(["onSubmit"]);
 
+/* Ref & Reactive Data */
 const text = ref<string>("");
 const imageInput = ref<HTMLInputElement>();
 const selectedFile = ref<File>(null);
+const inputImageUrl = ref<string>(null);
+/* Func */
 
 const handleFormSubmit = (): void =>
   emits("onSubmit", { text: text.value, mdeiaFiles: [selectedFile.value] });
@@ -73,6 +86,14 @@ const handleImageChange = (event: Event): void => {
   const file: File = (event.target as HTMLInputElement).files[0];
 
   selectedFile.value = file;
+
+  const reader = new FileReader();
+
+  reader.onload = (event) => {
+    inputImageUrl.value = event.target.result as string;
+  };
+
+  reader.readAsDataURL(file);
 };
 </script>
 
