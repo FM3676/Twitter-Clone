@@ -1,5 +1,6 @@
 import formidable from "formidable";
 import { createTweet } from "~~/server/db/tweets";
+import { tweetTransformer } from "~~/server/transformers/tweet";
 
 export default defineEventHandler(async (event) => {
   const form = formidable({});
@@ -26,6 +27,6 @@ export default defineEventHandler(async (event) => {
   const tweet = await createTweet(tweetData);
 
   return {
-    hello: tweet,
+    hello: tweetTransformer(tweet),
   };
 });
