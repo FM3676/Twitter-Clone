@@ -12,14 +12,27 @@
     </div>
 
     <div class="mt-2 space-y-3">
-        <!-- Tab List Loop Render from More to Profile -->
+      <!-- Tab List Loop Render from More to Profile -->
       <TabList />
+      <div class="hidden xl:block">
+        <UIButton liquid size="lg">
+          <span class="font-bold"> Tweet </span>
+        </UIButton>
+      </div>
+
+      <div class="block xl:hidden">
+        <UIButton>
+          <div class="w-6 h-6 font-bold">
+            <PencilIcon />
+          </div>
+        </UIButton>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { IconsRenderList } from "../../Logo/IconLoopRender";
+import { PencilIcon } from "~~/components/Logo/IconLoopRender";
 import TabList from "./TabList.jsx";
 const { defaultTransition } = useTailwindConfig();
 </script>

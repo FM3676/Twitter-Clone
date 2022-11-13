@@ -44,10 +44,13 @@
       <Chart />
       <Emoji />
       <Calendar />
+      <div class="ml-auto">
+        <UIButton size="sm">
+          <span class="font-bold">Tweet</span>
+        </UIButton>
+      </div>
     </div>
-    <div>
-      <button @click="handleFormSubmit">Tweet</button>
-    </div>
+    <!-- <button @click="handleFormSubmit">Tweet</button> -->
   </div>
 </template>
 
