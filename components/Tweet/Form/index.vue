@@ -10,13 +10,21 @@ interface User {
   profileImage: string;
 }
 
+interface SubmitFormData {
+  text: string;
+  mdeiaFiles: File[];
+}
+
 const props = defineProps<{ user: User }>();
 
 const { postTweet } = useTweets();
 
-const handleFormSubmit = async (data) => {
+const handleFormSubmit = async (data:SubmitFormData) => {
   try {
-    const response = await postTweet(data);
+      const response = await postTweet({
+          text: data.text,
+          mediaFiles:data.mdeiaFiles
+    });
     console.log(response);
   } catch (error) {
     console.log(error);

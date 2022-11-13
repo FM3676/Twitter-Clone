@@ -25,7 +25,7 @@
         hidden
         ref="imageInput"
         accept="image/png, image/gif, image/jpeg, image/jpg"
-        @change=""
+        @change="handleImageChange"
       />
     </div>
 
@@ -57,18 +57,23 @@ interface User {
   name: string;
   profileImage: string;
 }
-
 const props = defineProps<{ user: User }>();
 const emits = defineEmits(["onSubmit"]);
 
 const text = ref<string>("");
 const imageInput = ref<HTMLInputElement>();
+const selectedFile = ref<File>(null);
 
-const handleFormSubmit = (): void => emits("onSubmit", { text: text.value });
+const handleFormSubmit = (): void =>
+  emits("onSubmit", { text: text.value, mdeiaFiles: [selectedFile.value] });
 
 const handleImageClick = (): void => imageInput.value.click();
 
-const handleImageChange = (): void => {};
+const handleImageChange = (event: Event): void => {
+  const file: File = (event.target as HTMLInputElement).files[0];
+
+  selectedFile.value = file;
+};
 </script>
 
 <style scoped>
