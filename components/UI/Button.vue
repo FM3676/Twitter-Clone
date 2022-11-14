@@ -3,6 +3,7 @@
     class="flex justify-center text-white bg-blue-400 rounded-full hover:bg-blue-500 font-sm disabled:bg-blue-300 disabled:cursor-not-allowed"
     :disabled="props.disabled"
     :class="classes"
+    @click="handleClick"
   >
     <span :class="textFontSize">
       <slot />
@@ -11,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+const emits = defineEmits(["onClick"]);
 const props = defineProps({
   disabled: { type: Boolean, default: false },
   size: { type: String, default: "md" },
@@ -29,6 +31,8 @@ const textFontSize: string = props.size === "lg" ? "text-md" : "text-sm";
 const classes: string = `${paddingClasses} ${
   props.liquid ? "w-full" : "w-min"
 } `;
+
+const handleClick = (event: Event) => emits("onClick", event);
 </script>
 
 <style scoped></style>

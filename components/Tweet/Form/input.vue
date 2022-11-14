@@ -45,7 +45,7 @@
       <Emoji />
       <Calendar />
       <div class="ml-auto">
-        <UIButton size="sm">
+        <UIButton size="sm" :disabled="isDisabled" @on-click="handleFormSubmit">
           <span class="font-bold">Tweet</span>
         </UIButton>
       </div>
@@ -78,6 +78,7 @@ const text = ref<string>("");
 const imageInput = ref<HTMLInputElement>();
 const selectedFile = ref<File>(null);
 const inputImageUrl = ref<string>(null);
+const isDisabled = computed<boolean>(() => text.value === "");
 /* Func */
 
 const handleFormSubmit = (): void =>
