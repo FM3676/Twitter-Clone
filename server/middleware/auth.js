@@ -7,7 +7,7 @@ import { getUserById } from "../db/users";
 import { decodeAccessToken } from "../utils/jwt";
 
 export default defineEventHandler(async (event) => {
-  const endpoints = ["/api/auth/user", "/api/user/tweets"];
+  const endpoints = ["/api/auth/user", "/api/user/tweets", "/api/tweets"];
 
   // Match if the url is for user
   const isHandleByThisMiddleware = endpoints.some((endpoint) => {
