@@ -10,17 +10,6 @@
 </template>
 
 <script setup lang="ts">
-interface User {
-  username: string;
-  email: string;
-  name: string;
-  profileImage: string;
-}
-
-interface SubmitFormData {
-  text: string;
-  mdeiaFiles: File[];
-}
 
 const props = defineProps<{ user: User }>();
 

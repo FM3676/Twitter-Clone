@@ -63,12 +63,6 @@ import {
   Emoji,
   Calendar,
 } from "~~/components/Logo/PostFormIconList";
-interface User {
-  username: string;
-  email: string;
-  name: string;
-  profileImage: string;
-}
 const { twitterBorderColor } = useTailwindConfig();
 /* Props & Emits */
 const props = defineProps<{ user: User }>();
