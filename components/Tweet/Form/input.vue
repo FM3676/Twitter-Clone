@@ -24,9 +24,10 @@
       <img
         :src="inputImageUrl"
         alt=""
-        class="rounded-2xl border"
+        class="rounded-2xl" 
         :class="twitterBorderColor"
       />
+      
 
       <input
         type="file"
