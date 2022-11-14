@@ -3,6 +3,7 @@ interface User {
   email: string;
   name: string;
   profileImage: string;
+  handle:string
 }
 
 interface SubmitFormData {
@@ -19,9 +20,9 @@ interface Tweet {
   id: string;
   text: string;
   mediaFiles: MediaFile[];
-  author: string | null;
+  author: User | null;
   replies: Tweet[];
-  replyTo: string | null;
+  replyTo: Tweet | null;
   repliesCount: number;
   postedAtHuman: string;
 }
