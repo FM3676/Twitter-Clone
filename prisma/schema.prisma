@@ -60,7 +60,7 @@ model Tweet {
   replies   Tweet[] @relation("replies")
 
   // Media Files
-  mediaFile MediaFile[]
+  mediaFiles MediaFile[]
 }
 
 model MediaFile {
