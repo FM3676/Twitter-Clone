@@ -13,6 +13,6 @@ export const tweetTransformer = (tweet) => ({
   replyTo: !!tweet.replyTo ? tweetTransformer(tweet.replyTo) : null,
   repliesCount: !!tweet.replies ? tweet.replies.length : 0,
   postedAtHuman: human(
-    Math.abs(Date.parse(tweet.createAt) - Date.now()) / 1000
+    Math.abs(Date.parse(tweet.createdAt) - Date.now()) / 1000
   ),
 });

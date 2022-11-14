@@ -20,7 +20,7 @@ model User {
   password     String
   profileImage String?
 
-  createAt  DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Refresh Token
@@ -37,7 +37,7 @@ model RefreshToken {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   token String @unique
 
-  createAt  DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   userId String @db.ObjectId
@@ -48,7 +48,7 @@ model Tweet {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
   text String
 
-  createAt  DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Author
@@ -68,7 +68,7 @@ model MediaFile {
   url              String
   providerPublicId String
 
-  createAt  DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // User

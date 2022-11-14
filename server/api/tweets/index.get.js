@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
       },
       replyTo: { include: { author: true } },
     },
-    orderBy: [{ createAt: "desc" }],
+    orderBy: [{ createdAt: "desc" }],
   });
 
   return {
