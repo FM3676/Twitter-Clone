@@ -16,7 +16,7 @@
         .{{ props.tweet.postedAtHuman }}
       </span>
       <p v-if="props.tweet.replyTo" class="text-sm">
-        <span class="text-gray-500">Replying to</span>
+        <span class="text-gray-500">Replying to </span>
         <NuxtLink :to="replyToTweetUrl" class="text-blue-400">{{
           props.tweet.replyTo.author.handle
         }}</NuxtLink>
