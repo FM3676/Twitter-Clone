@@ -14,7 +14,7 @@
         <textarea
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
-          placeholder="What's happening?"
+          :placeholder="`${props.placeholder ? props.placeholder : 'What\'s happening?'}`"
         ></textarea>
       </div>
     </div>
@@ -24,10 +24,9 @@
       <img
         :src="inputImageUrl"
         alt=""
-        class="rounded-2xl" 
+        class="rounded-2xl"
         :class="twitterBorderColor"
       />
-      
 
       <input
         type="file"
@@ -65,7 +64,7 @@ import {
 } from "~~/components/Logo/PostFormIconList";
 const { twitterBorderColor } = useTailwindConfig();
 /* Props & Emits */
-const props = defineProps<{ user: User }>();
+const props = defineProps<{ user: User; placeholder: string }>();
 const emits = defineEmits(["onSubmit"]);
 
 /* Ref & Reactive Data */

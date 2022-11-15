@@ -4,14 +4,13 @@
       <UISpinner />
     </div>
     <div v-else>
-      <TweetFormInput :user="props.user" @on-submit="handleFormSubmit" />
+      <TweetFormInput :user="props.user" placeholder="Tweet your reply" @on-submit="handleFormSubmit" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
-const props = defineProps<{ user: User }>();
+const props = defineProps<{ user: User; placeholder: string }>();
 
 const loading = ref<boolean>(false);
 
