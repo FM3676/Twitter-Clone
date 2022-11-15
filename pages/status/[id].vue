@@ -23,13 +23,18 @@ const getTweet = async () => {
   try {
     const response = await getTweetById(getTweetIdFromRoute());
     console.log(response);
-    
+
     tweet.value = response.tweet;
   } catch (error) {
     console.log(error);
   }
   loading.value = false;
 };
+
+watch(
+  () => useRoute().fullPath,
+  () => getTweet()
+);
 
 onBeforeMount(() => getTweet());
 </script>

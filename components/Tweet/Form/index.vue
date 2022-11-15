@@ -14,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+const emits = defineEmits(["onSuccess"]);
 const props = withDefaults(
   defineProps<{ user: User; placeholder: string; replyTo: Tweet }>(),
   {
@@ -33,7 +34,7 @@ const handleFormSubmit = async (data: SubmitFormData) => {
       mediaFiles: data.mdeiaFiles,
       replyTo: props.replyTo?.id,
     });
-    console.log(response);
+    emits("onSuccess", response.tweet);
   } catch (error) {
     console.log(error);
   } finally {
