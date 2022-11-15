@@ -14,7 +14,7 @@
         <textarea
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
-          :placeholder="`${props.placeholder ? props.placeholder : 'What\'s happening?'}`"
+          :placeholder="props.placeholder"
         ></textarea>
       </div>
     </div>
@@ -64,7 +64,9 @@ import {
 } from "~~/components/Logo/PostFormIconList";
 const { twitterBorderColor } = useTailwindConfig();
 /* Props & Emits */
-const props = defineProps<{ user: User; placeholder: string }>();
+const props = withDefaults(defineProps<{ user: User; placeholder: string }>(), {
+  placeholder: "What's happening?",
+});
 const emits = defineEmits(["onSubmit"]);
 
 /* Ref & Reactive Data */
