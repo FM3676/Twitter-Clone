@@ -1,32 +1,40 @@
 <template>
   <ul class="flex items-center justify-around w-full">
     <!-- Chat Icon -->
-    <TweetItemActionsIcon color="blue">
+    <TweetItemActionsIcon :size="size" color="blue">
       <template #icon="{ classes }">
         <ChatIcon :class="classes" />
       </template>
-      <template #default>{{ props.tweet.repliesCount }}</template>
+      <template v-if="props.compact" #default>{{
+        props.tweet.repliesCount
+      }}</template>
     </TweetItemActionsIcon>
     <!-- Refresh Icon -->
-    <TweetItemActionsIcon color="green">
+    <TweetItemActionsIcon :size="size" color="green">
       <template #icon="{ classes }">
         <RefreshIcon :class="classes" />
       </template>
-      <template #default>{{generateRandomNumber()}}</template>
+      <template v-if="props.compact" #default>{{
+        generateRandomNumber()
+      }}</template>
     </TweetItemActionsIcon>
     <!-- Heart Icon -->
-    <TweetItemActionsIcon color="red">
+    <TweetItemActionsIcon :size="size" color="red">
       <template #icon="{ classes }">
         <HeartIcon :class="classes" />
       </template>
-      <template #default>{{generateRandomNumber()}}</template>
+      <template v-if="props.compact" #default>{{
+        generateRandomNumber()
+      }}</template>
     </TweetItemActionsIcon>
     <!-- Shared Icon -->
-    <TweetItemActionsIcon color="blue">
+    <TweetItemActionsIcon :size="size" color="blue">
       <template #icon="{ classes }">
         <SharedIcon :class="classes" />
       </template>
-      <template #default>{{generateRandomNumber()}}</template>
+      <template v-if="props.compact" #default>{{
+        generateRandomNumber()
+      }}</template>
     </TweetItemActionsIcon>
   </ul>
 </template>
@@ -39,7 +47,10 @@ import {
   SharedIcon,
 } from "~~/components/Logo/TweetItemIconList";
 
-const props = defineProps<{ tweet: Tweet }>();
+const props = withDefaults(defineProps<{ tweet: Tweet; compact: boolean }>(), {
+  compact: false,
+});
+const size = props.compact ? 5 : 8;
 const generateRandomNumber = () => Math.floor(Math.random() * 100);
 </script>
 

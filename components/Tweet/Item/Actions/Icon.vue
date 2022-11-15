@@ -5,7 +5,7 @@
       group-hover:text-${props.color}-400 
       dark:group-hover:bg-opacity-20 ${defaultTransition}`"
     >
-      <slot name="icon" classes="w-5 h-5" />
+      <slot name="icon" :classes="`w-${props.size} h-${props.size}`" />
     </div>
     <span :class="`ml-1 group-hover:text-${props.color}-400`">
       <slot name="default" />
@@ -15,7 +15,9 @@
 
 <script setup lang="ts">
 const { defaultTransition } = useTailwindConfig();
-const props = defineProps<{ color: string }>();
+const props = withDefaults(defineProps<{ color: string; size: number }>(), {
+  size: 5,
+});
 </script>
 
 <style scoped></style>
