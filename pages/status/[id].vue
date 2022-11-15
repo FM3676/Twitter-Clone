@@ -4,6 +4,8 @@
       <Head>
         <Title></Title>
       </Head>
+
+      <TweetDetails :user="user" :tweet="tweet" />
     </MainSection>
   </div>
 </template>
@@ -12,13 +14,17 @@
 const loading = ref<boolean>(false);
 const tweet = ref<Tweet>(null);
 const { getTweetById } = useTweets();
+const { useAuthUser } = useAuth();
+const user = useAuthUser();
 const getTweetIdFromRoute = () => useRoute().params.id;
 
 const getTweet = async () => {
   loading.value = true;
   try {
     const response = await getTweetById(getTweetIdFromRoute());
-    tweet.value = response;
+    console.log(response);
+    
+    tweet.value = response.tweet;
   } catch (error) {
     console.log(error);
   }
