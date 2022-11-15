@@ -47,9 +47,12 @@ import {
   SharedIcon,
 } from "~~/components/Logo/TweetItemIconList";
 
-const props = withDefaults(defineProps<{ tweet: Tweet; compact: boolean }>(), {
-  compact: false,
-});
+const props = withDefaults(
+  defineProps<{ tweet: Tweet; compact: boolean}>(),
+  {
+    compact: false,
+  }
+);
 const size = props.compact ? 5 : 8;
 const generateRandomNumber = () => Math.floor(Math.random() * 100);
 </script>

@@ -3,6 +3,7 @@ export default () => {
     const form = new FormData();
 
     form.append("text", formData.text);
+    form.append("replyTo", formData.replyTo);
 
     formData.mediaFiles.forEach((mediaFile, index) =>
       form.append("media_file_" + index, mediaFile)
