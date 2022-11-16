@@ -16,14 +16,13 @@ const tweet = ref<Tweet>(null);
 const { getTweetById } = useTweets();
 const { useAuthUser } = useAuth();
 const user = useAuthUser();
-const getTweetIdFromRoute = () => useRoute().params.id;
+const getTweetIdFromRoute = () => useRouter().currentRoute.value.params.id;
 
 const getTweet = async () => {
   loading.value = true;
+  console.log(getTweetIdFromRoute());
   try {
     const response = await getTweetById(getTweetIdFromRoute());
-    console.log(response);
-
     tweet.value = response.tweet;
   } catch (error) {
     console.log(error);
@@ -32,7 +31,7 @@ const getTweet = async () => {
 };
 
 watch(
-  () => useRoute().fullPath,
+  () => useRouter().currentRoute.value.fullPath,
   () => getTweet()
 );
 
