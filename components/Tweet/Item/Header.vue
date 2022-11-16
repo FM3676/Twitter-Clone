@@ -13,7 +13,7 @@
         <NuxtLink to="#">
           {{ author.handle }}
         </NuxtLink>
-        .{{ props.tweet.postedAtHuman }}
+        {{ props.tweet.postedAtHuman }}
       </span>
       <p v-if="props.tweet.replyTo" class="text-sm">
         <span class="text-gray-500">Replying to </span>
