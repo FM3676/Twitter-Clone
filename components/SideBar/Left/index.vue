@@ -15,13 +15,13 @@
       <!-- Tab List Loop Render from More to Profile -->
       <TabList />
       <div class="hidden xl:block">
-        <UIButton liquid size="lg">
+        <UIButton liquid size="lg" @on-click="emits('onTweet')">
           <span class="font-bold"> Tweet </span>
         </UIButton>
       </div>
 
       <div class="block xl:hidden">
-        <UIButton>
+        <UIButton @on-click="emits('onTweet')">
           <div class="w-6 h-6 font-bold">
             <PencilIcon />
           </div>
@@ -35,6 +35,7 @@
 import { PencilIcon } from "~~/components/Logo/IconLoopRender";
 import TabList from "./TabList.jsx";
 const { defaultTransition } = useTailwindConfig();
+const emits = defineEmits(['onTweet'])
 </script>
 
 <style scoped></style>

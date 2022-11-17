@@ -11,7 +11,7 @@
           <!-- Left Sidebar -->
           <aside class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SideBarLeft />
+              <SideBarLeft @on-tweet="handleOpenTweetModal" />
             </div>
           </aside>
           <!-- Main Content -->
@@ -29,6 +29,14 @@
 
       <!-- AuthPage -->
       <AuthPage v-else></AuthPage>
+      <UIModal>
+        <TweetForm
+          :user="user"
+          placeholder="What's happening"
+          @on-success="handleFormSuccess"
+          :reply-to="null"
+        />
+      </UIModal>
     </div>
   </div>
 </template>
@@ -36,9 +44,18 @@
 <script setup lang="ts">
 const darkMode = ref<boolean>(false);
 const { useAuthUser, useAuthLoading, initAuth } = useAuth();
+const { closePostTweetModal, openPostTweetModal } =
+  useTweets();
 const user = useAuthUser();
 const isAuthLoading = useAuthLoading();
 
 onBeforeMount(() => initAuth());
+
+const handleFormSuccess = (tweet: Tweet) => {
+  closePostTweetModal();
+  navigateTo({ path: `/status/${tweet.id}` });
+};
+
+const handleOpenTweetModal = () => openPostTweetModal();
 </script>
 <style scoped></style>
