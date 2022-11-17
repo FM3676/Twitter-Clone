@@ -24,6 +24,23 @@ export default () => {
     authLoading.value = value;
   };
 
+  const register = ({ username, email, password, repeatPassword, name }) =>
+    new Promise(async (res, rej) => {
+      try {
+        const data = await $fetch("/api/auth/register", {
+          method: "POST",
+          body: { username, email, password, repeatPassword, name },
+        });
+
+        setToken(data.access_token);
+        setUser(data.user);
+
+        res(true);
+      } catch (error) {
+        rej(error);
+      }
+    });
+
   const login = ({ username, password }) =>
     new Promise(async (res, rej) => {
       try {
@@ -109,5 +126,13 @@ export default () => {
         setIsAuthLoading(false);
       }
     });
-  return { login, useAuthUser, useAuthToken, useAuthLoading, initAuth, logout };
+  return {
+    register,
+    login,
+    useAuthUser,
+    useAuthToken,
+    useAuthLoading,
+    initAuth,
+    logout,
+  };
 };
