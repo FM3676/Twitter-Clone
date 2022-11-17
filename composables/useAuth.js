@@ -81,6 +81,20 @@ export default () => {
     }, newRefreshTime);
   };
 
+  const logout = () =>
+    new Promise(async (resolve, reject) => {
+      try {
+        await useFetchApi("/api/auth/logout", {
+          method: "POST",
+        });
+        setToken(null);
+        setUser(null);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+
   const initAuth = () =>
     new Promise(async (res, rej) => {
       setIsAuthLoading(true);
@@ -95,5 +109,5 @@ export default () => {
         setIsAuthLoading(false);
       }
     });
-  return { login, useAuthUser, useAuthToken, useAuthLoading, initAuth };
+  return { login, useAuthUser, useAuthToken, useAuthLoading, initAuth, logout };
 };
