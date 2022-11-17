@@ -108,7 +108,7 @@ const handleRegister = async () => {
 };
 
 const sendLoginRegisterRequest = async () =>
-  isRegistering ? handleRegister() : handleLogin();
+  isRegistering.value ? handleRegister() : handleLogin();
 
 const isButtonDisabled = computed(
   () => (!data.username && !data.password) || data.loading
