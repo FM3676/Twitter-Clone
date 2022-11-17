@@ -10,7 +10,7 @@
       :class="[twitterBorderColor, defaultTransition]"
       @click.native="redirect(tweet)"
     >
-      <TweetItem :tweet="tweet" compact />
+      <TweetItem :tweet="tweet" compact :hidden-actions="false" />
     </li>
   </ul>
 </template>

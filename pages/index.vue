@@ -5,7 +5,13 @@
         <Title>Home/ Twitter</Title>
       </Head>
       <div class="border-b" :class="twitterBorderColor">
-        <TweetForm :user="user" placeholder="What's happening?" @on-success="handleFormSuccess" :reply-to="null"/>
+        <TweetForm
+          :user="user"
+          placeholder="What's happening?"
+          @on-success="handleFormSuccess"
+          :reply-to="null"
+          :using-post-modal="false"
+        />
       </div>
 
       <TweetListFeed :tweets="homeTweets" />
