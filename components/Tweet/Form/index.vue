@@ -1,41 +1,43 @@
 <template>
   <div>
     <div v-if="loading" class="flex items-center justify-center py-6">
-      <UISpinner />
+      <UISpinner/>
     </div>
     <div v-else>
-      <TweetItem v-if="replyingTweet && usingPostModal" :tweet="replyingTweet" hidden-actions />
+      <TweetItem v-if="replyingTweet && usingPostModal" :tweet="replyingTweet" hidden-actions :compact="false"/>
       <TweetFormInput
-        :user="props.user"
-        placeholder="Tweet your reply"
-        @on-submit="handleFormSubmit"
+          :user="props.user"
+          placeholder="Tweet your reply"
+          @on-submit="handleFormSubmit"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const { useReplyTo } = useTweets();
+import {Ref} from "vue";
+
+const {useReplyTo} = useTweets();
 
 const emits = defineEmits(["onSuccess"]);
 const props = withDefaults(
-  defineProps<{
-    user: User;
-    placeholder: string;
-    replyTo: Tweet;
-    usingPostModal: boolean;
-  }>(),
-  {
-    replyTo: null,
-    usingPostModal: false,
-  }
+    defineProps<{
+      user: User;
+      placeholder: string;
+      replyTo: Tweet;
+      usingPostModal: boolean;
+    }>(),
+    {
+      replyTo: null,
+      usingPostModal: false,
+    }
 );
 
 const loading = ref<boolean>(false);
 
-const replyingTweet = useReplyTo();
+const replyingTweet: Ref<Tweet> = useReplyTo();
 
-const { postTweet } = useTweets();
+const {postTweet} = useTweets();
 
 const handleFormSubmit = async (data: SubmitFormData) => {
   loading.value = true;

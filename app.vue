@@ -34,7 +34,7 @@
           :user="user"
           placeholder="What's happening"
           @on-success="handleFormSuccess"
-          :reply-to="null"
+          :reply-to="replyTo"
           using-post-modal
         />
       </UIModal>
@@ -43,11 +43,14 @@
 </template>
 
 <script setup lang="ts">
+import {Ref} from "vue";
+
 const { useDarkMode } = useDark();
 const darkMode = useDarkMode();
 const { useAuthUser, useAuthLoading, initAuth, logout } = useAuth();
-const { closePostTweetModal, openPostTweetModal } = useTweets();
-const user = useAuthUser();
+const { closePostTweetModal, openPostTweetModal, useReplyTo } = useTweets();
+const replyTo:Ref<Tweet> = useReplyTo()
+const user:Ref<User> = useAuthUser();
 const isAuthLoading = useAuthLoading();
 
 onBeforeMount(() => initAuth());

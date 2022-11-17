@@ -21,7 +21,7 @@
       </div>
       <!-- Item Footer Buttons -->
       <div class="mt-2">
-        <TweetItemActions :tweet="props.tweet" :compact="props.compact" />
+        <TweetItemActions :tweet="props.tweet" :compact="props.compact"  v-if="!props.hiddenActions"/>
       </div>
     </div>
   </div>
