@@ -1,7 +1,7 @@
 <template>
   <ul class="flex items-center justify-around w-full">
     <!-- Chat Icon -->
-    <TweetItemActionsIcon :size="size" color="blue">
+    <TweetItemActionsIcon :size="size" color="blue" @on-click="handleReply">
       <template #icon="{ classes }">
         <ChatIcon :class="classes" />
       </template>
@@ -47,14 +47,21 @@ import {
   SharedIcon,
 } from "~~/components/Logo/TweetItemIconList";
 
-const props = withDefaults(
-  defineProps<{ tweet: Tweet; compact: boolean}>(),
-  {
-    compact: false,
-  }
-);
+const {
+  openPostTweetModal,
+  setReplyTo,
+} = useTweets();
+
+const props = withDefaults(defineProps<{ tweet: Tweet; compact: boolean }>(), {
+  compact: false,
+});
 const size = props.compact ? 5 : 8;
 const generateRandomNumber = () => Math.floor(Math.random() * 100);
+
+const handleReply = () => {
+  openPostTweetModal()
+  setReplyTo(props.tweet)
+};
 </script>
 
 <style scoped></style>

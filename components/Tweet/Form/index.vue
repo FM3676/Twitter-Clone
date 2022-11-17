@@ -4,6 +4,7 @@
       <UISpinner />
     </div>
     <div v-else>
+      <TweetItem v-if="replyingTweet && usingPostModal" :tweet="replyingTweet" hidden-actions />
       <TweetFormInput
         :user="props.user"
         placeholder="Tweet your reply"
@@ -14,15 +15,25 @@
 </template>
 
 <script setup lang="ts">
+const { useReplyTo } = useTweets();
+
 const emits = defineEmits(["onSuccess"]);
 const props = withDefaults(
-  defineProps<{ user: User; placeholder: string; replyTo: Tweet }>(),
+  defineProps<{
+    user: User;
+    placeholder: string;
+    replyTo: Tweet;
+    usingPostModal: boolean;
+  }>(),
   {
     replyTo: null,
+    usingPostModal: false,
   }
 );
 
 const loading = ref<boolean>(false);
+
+const replyingTweet = useReplyTo();
 
 const { postTweet } = useTweets();
 

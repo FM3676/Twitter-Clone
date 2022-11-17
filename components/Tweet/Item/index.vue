@@ -29,9 +29,13 @@
 
 <script setup lang="ts">
 const { twitterBorderColor } = useTailwindConfig();
-const props = withDefaults(defineProps<{ tweet: Tweet; compact: boolean }>(), {
-  compact: false,
-});
+const props = withDefaults(
+  defineProps<{ tweet: Tweet; compact: boolean; hiddenActions: boolean }>(),
+  {
+    compact: false,
+    hiddenActions: false,
+  }
+);
 
 const tweetBodyWrapper = props.compact ? "ml-16" : "ml-2 mt-4";
 const textSize = props.compact ? "text-base" : "text-2xl";

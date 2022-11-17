@@ -4,6 +4,7 @@
     :show-close="false"
     align-center
     :append-to-body="true"
+    @close="clearReplyingTweet"
   >
     <slot />
   </el-dialog>
@@ -12,9 +13,12 @@
 <script setup lang="ts">
 import { ElDialog } from "element-plus";
 
-const { usePostTweetModal } = useTweets();
+const { usePostTweetModal, useReplyTo, setReplyTo } = useTweets();
 
 const dialogFormVisible = usePostTweetModal();
+
+const clearReplyingTweet = () =>
+  useReplyTo().value != null ? setReplyTo(null) : null;
 </script>
 
 <style>

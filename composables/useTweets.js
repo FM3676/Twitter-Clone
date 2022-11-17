@@ -1,4 +1,11 @@
 export default () => {
+  const useReplyTo = () => useState("reply_to", () => null);
+
+  const setReplyTo = (tweet) => {
+    const replyTo = useReplyTo();
+    replyTo.value = tweet;
+  };
+
   const usePostTweetModal = () => useState("post_tweet_modal", () => false);
   const closePostTweetModal = () => {
     const postTweetModal = usePostTweetModal();
@@ -52,5 +59,7 @@ export default () => {
     usePostTweetModal,
     closePostTweetModal,
     openPostTweetModal,
+    useReplyTo,
+    setReplyTo,
   };
 };

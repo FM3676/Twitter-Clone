@@ -35,6 +35,7 @@
           placeholder="What's happening"
           @on-success="handleFormSuccess"
           :reply-to="null"
+          using-post-modal
         />
       </UIModal>
     </div>
@@ -44,8 +45,7 @@
 <script setup lang="ts">
 const darkMode = ref<boolean>(false);
 const { useAuthUser, useAuthLoading, initAuth } = useAuth();
-const { closePostTweetModal, openPostTweetModal } =
-  useTweets();
+const { closePostTweetModal, openPostTweetModal } = useTweets();
 const user = useAuthUser();
 const isAuthLoading = useAuthLoading();
 
