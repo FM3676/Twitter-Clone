@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div class="w-full">
+    <div class="flex justify-center">
+      <div class="w-10 h-10">
+        <LogoTwitter />
+      </div>
+    </div>
     <div class="pt-5 space-y-6">
       <UIInput
         v-model="data.username"
@@ -13,9 +18,9 @@
         v-model="data.password"
       />
 
-      <div>
-        <button @click="handleLogin">Login</button>
-      </div>
+      <UIButton liquid :disabled="isButtonDisabled" @click="handleLogin"
+        >Login</UIButton
+      >
     </div>
   </div>
 </template>
@@ -40,6 +45,10 @@ const handleLogin = async () => {
     data.loading = false;
   }
 };
+
+const isButtonDisabled = computed(
+  () => (!data.username && !data.password) || data.loading
+);
 </script>
 
 <style scoped></style>
