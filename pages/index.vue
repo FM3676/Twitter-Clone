@@ -22,7 +22,7 @@
 <script setup lang="ts">
 const { twitterBorderColor } = useTailwindConfig();
 const { useAuthUser } = useAuth();
-const { getHomeTweets } = useTweets();
+const { getTweets } = useTweets();
 const user = useAuthUser();
 const loading = ref<boolean>(false);
 const homeTweets = ref<Tweet[]>([]);
@@ -30,7 +30,7 @@ const homeTweets = ref<Tweet[]>([]);
 onBeforeMount(async () => {
   loading.value = true;
   try {
-    const { tweets } = await getHomeTweets();
+    const { tweets } = await getTweets();
     homeTweets.value = tweets as Tweet[];
   } catch {
   } finally {

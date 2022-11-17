@@ -32,10 +32,13 @@ export default () => {
     });
   };
 
-  const getHomeTweets = () =>
+  const getTweets = (params = {}) =>
     new Promise(async (resolve, reject) => {
       try {
-        const response = await useFetchApi("/api/tweets", { method: "GET" });
+        const response = await useFetchApi("/api/tweets", {
+          method: "GET",
+          params,
+        });
         resolve(response);
       } catch (error) {
         reject(error);
@@ -54,7 +57,7 @@ export default () => {
 
   return {
     postTweet,
-    getHomeTweets,
+    getTweets,
     getTweetById,
     usePostTweetModal,
     closePostTweetModal,
