@@ -68,10 +68,46 @@
         </div>
       </SideBarRightPreviewCardItem>
     </SideBarRightPreviewCard>
+
+    <!-- Footer -->
+    <footer>
+      <ul class="mx-2 my-4 text-xs text-gray-500">
+        <li class="inline-block mx-2" @click="handleToggleDarkMode">
+          <el-switch
+            v-model="dummyDarkMode"
+            style="
+              --el-switch-on-color: #2c2c2c;
+              --el-switch-off-color: #f2f2f2;
+            "
+            :active-icon="Moon"
+            :inactive-icon="Sun"
+            inline-prompt
+          />
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Privacy Policy</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Cookie Policy</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Accessability</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Ads info</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">More</a>
+        </li>
+        <li class="inline-block mx-2">© 2022 Twitter, Inc.</li>
+      </ul>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ElSwitch } from "element-plus";
+import { Sun, Moon } from "~~/components/Logo/DarkModeIcon";
 // const whatsHappeningItems = ref<{ title: string; count: string }[]>([
 //   {
 //     title: "SpaceX",
@@ -138,10 +174,16 @@ const whoToFollowItem = [
   },
 ];
 
+const { changeDarkMode } = useDark();
+
 const search = ref("");
+
+const dummyDarkMode = ref(false); // Created for using ELSwitch component, not actually controlling the darkMode Swtich
 
 const handleSearch = () =>
   useRouter().push({ path: "/search", query: { q: search.value } });
+
+const handleToggleDarkMode = () => changeDarkMode();
 </script>
 
 <style scoped></style>

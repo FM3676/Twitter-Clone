@@ -43,7 +43,8 @@
 </template>
 
 <script setup lang="ts">
-const darkMode = ref<boolean>(false);
+const { useDarkMode } = useDark();
+const darkMode = useDarkMode();
 const { useAuthUser, useAuthLoading, initAuth } = useAuth();
 const { closePostTweetModal, openPostTweetModal } = useTweets();
 const user = useAuthUser();
