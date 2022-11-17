@@ -2,7 +2,7 @@
   <div>
     <MainSection title="Tweet" :loading="loading">
       <Head>
-        <Title></Title>
+        <Title>Tweet</Title>
       </Head>
 
       <TweetDetails :user="user" :tweet="tweet" />
