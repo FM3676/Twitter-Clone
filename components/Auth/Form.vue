@@ -54,8 +54,10 @@
         liquid
         :disabled="isButtonDisabled"
         @click="sendLoginRegisterRequest"
-        >{{ isRegistering ? "Sign up" : "Sign in" }}</UIButton
       >
+        <UISpinner v-if="data.loading" class="h-6" />
+        <p v-else>{{ isRegistering ? "Sign up" : "Sign in" }}</p>
+      </UIButton>
       <p
         class="text-gray-500 text-right pr-2 cursor-pointer"
         @click="changeRegisterOrLogin"

@@ -1,7 +1,7 @@
 <!-- A tab item for selection -->
 <template>
   <NuxtLink
-    to="#"
+    to="/"
     class="flex items-center p-3 text-black rounded-full w-min hover:bg-gray-200 dark:hover:bg-dim-200 dark:text-white"
     :class="defaultTransition"
   >
